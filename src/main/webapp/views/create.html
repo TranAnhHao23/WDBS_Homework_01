@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <title>
+        Human
+    </title>
+    <style th:replace="/layout :: css"></style>
+</head>
+<body>
+<h2 th:class="notify" th:if="${message} != null">
+    <span th:text="${message}"></span>
+</h2>
+<form id="form" th:action="@{/home/save}" th:object="${human}" method="post">
+    <label>
+        Name: <input type="text" name="name" th:field="*{name}">
+    </label>
+    <p th:if="${#fields.hasErrors('name')}" th:errors="*{name}" style="color: red"></p>
+    <label>
+        Phone: <input type="text" name="phoneNumber" th:field="*{phoneNumber}">
+    </label>
+    <p th:if="${#fields.hasErrors('phoneNumber')}" th:errors="*{phoneNumber}" style="color: red"></p>
+    <label>
+        Address: <input type="text" name="address" th:field="*{address}">
+    </label>
+    <p th:if="${#fields.hasErrors('address')}" th:errors="*{address}" style="color: red"></p>
+    <label>
+        Identity Number: <input type="text" name="identityNumber" th:field="*{identityNumber}">
+    </label>
+    <p th:if="${#fields.hasErrors('identityNumber')}" th:errors="*{identityNumber}" style="color: red"></p>
+    <br>
+    <button type="submit">Submit</button>
+</form>
+<p><a th:href="@{/home}">Back to list</a></p>
+<footer th:replace="/layout :: footer"></footer>
+</body>
+</html>

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <title>
+        View Human
+    </title>
+    <style th:replace="/layout :: css"></style>
+</head>
+<body>
+<div th:unless="${human == null}">
+    <table id="humans">
+        <thead>
+        <tr>
+            <th>#</th>
+            <th>Name</th>
+            <th>Phone Number</th>
+            <th>Address</th>
+            <th>Identity Number</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+            <td th:text="'#'"></td>
+            <td th:text="${human.name}"></td>
+            <td th:text="${human.phoneNumber}"></td>
+            <td th:text="${human.address}"></td>
+            <td th:text="${human.identityNumber}"></td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+<div>
+    <a th:href="@{/home}">BACK TO HOME</a>
+</div>
+<footer th:replace="/layout :: footer"></footer>
+</body>
+</html>
