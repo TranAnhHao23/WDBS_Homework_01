@@ -78,8 +78,24 @@ public class HumanController {
     }
 
     @GetMapping("/edit")
-    public ModelAndView edit(@RequestParam("id") Long id){
+    public ModelAndView edit(@RequestParam("id") Long id) {
         ModelAndView modelAndView = new ModelAndView("edit");
+        Human human = humanService.findById(id);
+        modelAndView.addObject("human", human);
+        return modelAndView;
+    }
 
+    @PostMapping("/update")
+    public ModelAndView update(@Validated @ModelAttribute Human human, BindingResult bindingResult, @RequestParam("id") Long id) {
+        ModelAndView modelAndView = new ModelAndView("edit");
+        if (bindingResult.hasFieldErrors()) {
+            return new ModelAndView("edit");
+        }
+        if (human != null) {
+            human.setId(id);
+            humanService.save(human);
+            modelAndView.addObject("message", "Update Success!!!");
+        }
+        return modelAndView;
     }
 }
